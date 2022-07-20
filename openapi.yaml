@@ -1,0 +1,75 @@
+---
+openapi: 3.0.3
+info:
+  title: Manager API VIVO MVE
+  description: Just an example service vivo b2b
+  contact:
+    name: Example API Support
+    url: http://exampleurl.com/contact
+    email: techsupport@example.com
+  version: 1.0.1
+servers:
+- url: http://localhost:8080
+  description: Auto generated value
+- url: http://0.0.0.0:8080
+  description: Auto generated value
+paths:
+  /fruits:
+    get:
+      tags:
+      - Fruit Resource
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/Fruit'
+    post:
+      tags:
+      - Fruit Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fruit'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/Fruit'
+    delete:
+      tags:
+      - Fruit Resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fruit'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                uniqueItems: true
+                type: array
+                items:
+                  $ref: '#/components/schemas/Fruit'
+components:
+  schemas:
+    Fruit:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
