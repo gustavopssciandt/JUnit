@@ -44,7 +44,7 @@ public class FruitResource {
     @GET
     @Path("/path/{pathParamTeste}")
     @Operation(summary = "Find Fruits", description = "Find fruits for path param")
-    public Set<Fruit> path(@PathParam("nameFruit") final String nameFruit) {
+    public Set<Fruit> path(@PathParam("pathParamTeste") final String nameFruit) {
         return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toSet());
     }
 
@@ -58,15 +58,6 @@ public class FruitResource {
     @POST
     public Set<Fruit> add(Fruit fruit) {
         fruits.add(fruit);
-        return fruits;
-    }
-
-    @DELETE
-    public Set<Fruit> delete(Fruit fruit) {
-        if (NAME_FRUIT.equals(fruit.getName())){
-            throw new RuntimeException();
-        }
-        fruits.removeIf(existingFruit -> existingFruit.name.contentEquals(fruit.name));
         return fruits;
     }
 }

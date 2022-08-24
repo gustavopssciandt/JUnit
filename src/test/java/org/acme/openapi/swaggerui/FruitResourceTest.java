@@ -54,26 +54,6 @@ public class FruitResourceTest {
 
     }
 
-    @Nested
-    @DisplayName("Given FruitResource is deleted")
-    class DeleteFruitTest{
 
-        private Fruit fruit;
-
-        @BeforeEach
-        public void beforeEach() {
-            fruitResource = new FruitResource();
-            fruit = new Fruit("Orange", "Orange");
-        }
-
-        @Test
-        @DisplayName("Then it should return an exception because it is the orange fruit")
-        void shouldReturnExceptionOrangeFruit() {
-           assertThrows(RuntimeException.class, () -> {
-                 fruitResource.delete(fruit);
-            });
-        }
-
-    }
 
 }

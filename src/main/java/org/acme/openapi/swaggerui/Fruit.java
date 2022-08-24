@@ -2,8 +2,8 @@ package org.acme.openapi.swaggerui;
 
 public class Fruit {
 
-    public String name;
-    public String description;
+    private String name;
+    private String description;
 
     public Fruit() {
     }

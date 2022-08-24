@@ -2,7 +2,7 @@
 Projeto para exercícios do JUnit
 
 # Desafio
-Crie testes para os métodos find, path e query da classe FruitResource. 
+Crie testes para os métodos find e path da classe FruitResource. 
 ATENÇÂO: Em pelo menos 1 dos testes utilize a afirmação "assertThrows", se necessário crie uma condição de execção na classe.
 
 # Quarkus
