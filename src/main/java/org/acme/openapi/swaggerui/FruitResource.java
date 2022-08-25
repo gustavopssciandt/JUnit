@@ -3,9 +3,7 @@ package org.acme.openapi.swaggerui;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,7 +16,7 @@ public class FruitResource {
 
     private static final String NAME_FRUIT = "Orange";
 
-    private Set<Fruit> fruits = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
+    private List<Fruit> fruits = new ArrayList<>();
 
     public FruitResource() {
         fruits.add(new Fruit("Apple", "Winter fruit"));
@@ -28,35 +26,38 @@ public class FruitResource {
     @GET
     @Path("/list")
     @Operation(summary = "List Fruits", description = "Find fruits for mongoDB")
-    public Set<Fruit> list() {
+    public List<Fruit> list() {
         return fruits;
     }
 
     @GET
     @Path("/header")
     @Operation(summary = "Find Fruit", description = "Find fruits for header param")
-    public Set<Fruit> find(@HeaderParam("nameFruit") final String nameFruit) {
+    public List<Fruit> find(@HeaderParam("nameFruit") final String nameFruit) {
 
-        return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toSet());
+        return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toList());
 
     }
 
     @GET
     @Path("/path/{pathParamTeste}")
     @Operation(summary = "Find Fruits", description = "Find fruits for path param")
-    public Set<Fruit> path(@PathParam("pathParamTeste") final String nameFruit) {
-        return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toSet());
+    public List<Fruit> path(@PathParam("pathParamTeste") final String nameFruit) {
+        if(nameFruit.equals("Maçã")){
+            throw new RuntimeException();
+        }
+        return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toList());
     }
 
     @GET
     @Path("/query")
     @Operation(summary = "Find Fruits", description = "Find fruits for query param")
-    public Set<Fruit> query(@QueryParam("nameFruit") final String nameFruit) {
-        return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toSet());
+    public List<Fruit> query(@QueryParam("nameFruit") final String nameFruit) {
+        return fruits.stream().filter(fruit -> fruit.getName().equals(nameFruit)).collect(Collectors.toList());
     }
 
     @POST
-    public Set<Fruit> add(Fruit fruit) {
+    public List<Fruit> add(Fruit fruit) {
         fruits.add(fruit);
         return fruits;
     }
